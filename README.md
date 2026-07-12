@@ -7,6 +7,7 @@ machines.
 | Skill | What it does |
 | --- | --- |
 | [`audit`](audit/) | Read-only holistic review of a project — architecture, correctness, code health, tests, doc drift, tooling — via parallel exploration agents, reported as HTML. |
+| [`commit`](commit/) | Writes commit messages that explain *why*. Never attributes the commit to Claude. |
 | [`standard-html`](standard-html/) | Writes plans, audits, and design docs as plain HTML in a fixed house style instead of Markdown. |
 
 ## Install
