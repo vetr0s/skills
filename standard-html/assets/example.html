@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Standard HTML — house style</title>
+<style>
+/* ============================================================
+   Standard HTML — house style for plans, audits, and design docs.
+   Deliberately project-agnostic: this never adopts a project's theme.
+   Plain document on a plain background. Legibility over decoration.
+   ============================================================ */
+
+:root {
+  --bg:        #fbfbf9;
+  --fg:        #1a1a1a;
+  --fg-muted:  #5c5c5c;
+  --rule:      #d4d4cf;
+  --surface:   #f0f0ec;
+  --link:      #0b4fa8;
+  --visited:   #6b3fa0;
+  --accent:    #8a5a00;
+  --good:      #1c6b2e;
+  --bad:       #a11b1b;
+  --measure:   72em;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:       #101010;
+    --fg:       #e6e6e3;
+    --fg-muted: #9a9a95;
+    --rule:     #3a3a3a;
+    --surface:  #1c1c1c;
+    --link:     #89a6ff;
+    --visited:  #d98cff;
+    --accent:   #e0a33a;
+    --good:     #52c96a;
+    --bad:      #ff6b52;
+  }
+}
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--fg);
+  background: var(--bg);
+  margin: 0;
+  padding: 2.5rem 1.25rem 6rem;
+}
+
+/* Left-justified, not centered: the document hugs the left gutter and simply
+   stops at the measure. */
+main, .doc {
+  max-width: var(--measure);
+  margin: 0;
+}
+
+/* --- headings ------------------------------------------------ */
+
+h1, h2, h3, h4 {
+  line-height: 1.25;
+  font-weight: 600;
+  margin: 2.2em 0 0.6em;
+}
+h1 {
+  font-size: 1.9rem;
+  margin-top: 0;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--rule);
+}
+h2 { font-size: 1.35rem; }
+h3 { font-size: 1.1rem; }
+h4 { font-size: 1rem; color: var(--fg-muted); }
+
+/* Byline directly under the h1: date, repo, commit, author. */
+.meta {
+  color: var(--fg-muted);
+  font-size: 0.875rem;
+  margin: -0.2em 0 2.5em;
+}
+.meta > * + *::before { content: " · "; }
+
+/* --- prose --------------------------------------------------- */
+
+p, ul, ol, dl, table, pre, blockquote { margin: 0 0 1.1em; }
+
+a          { color: var(--link); }
+a:visited  { color: var(--visited); }
+
+strong { font-weight: 600; }
+
+small, .muted { color: var(--fg-muted); font-size: 0.875rem; }
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 2.5em 0;
+}
+
+blockquote {
+  margin-left: 0;
+  padding: 0.1em 0 0.1em 1em;
+  border-left: 3px solid var(--rule);
+  color: var(--fg-muted);
+}
+
+ul, ol { padding-left: 1.4em; }
+li { margin: 0.25em 0; }
+li > ul, li > ol { margin: 0.25em 0; }
+
+/* --- code ---------------------------------------------------- */
+
+code, kbd, samp, .path {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.875em;
+}
+
+code {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 0.1em 0.3em;
+}
+
+/* File paths and identifiers: mono, but no box. */
+.path { color: var(--fg-muted); }
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  padding: 0.75em 0.9em;
+  overflow-x: auto;
+  line-height: 1.45;
+}
+pre code {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: 0.8125rem;
+}
+
+/* --- tables -------------------------------------------------- */
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.9375rem;
+}
+th, td {
+  border: 1px solid var(--rule);
+  padding: 0.45em 0.7em;
+  text-align: left;
+  vertical-align: top;
+}
+th {
+  background: var(--surface);
+  font-weight: 600;
+}
+
+/* Wide tables scroll inside their own box; the page never scrolls sideways. */
+.scroll { overflow-x: auto; margin: 0 0 1.1em; }
+.scroll table { margin: 0; }
+
+/* --- callouts ------------------------------------------------ */
+
+.note, .warn, .ok {
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--fg-muted);
+  background: var(--surface);
+  padding: 0.7em 0.9em;
+  margin: 0 0 1.1em;
+}
+.note > :last-child, .warn > :last-child, .ok > :last-child { margin-bottom: 0; }
+.warn { border-left-color: var(--accent); }
+.ok   { border-left-color: var(--good); }
+
+.note-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  margin-bottom: 0.3em;
+}
+
+/* --- status tags --------------------------------------------- */
+
+.tag {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  padding: 0.05em 0.4em;
+  white-space: nowrap;
+  color: var(--fg-muted);
+}
+.tag-good { color: var(--good); }
+.tag-warn { color: var(--accent); }
+.tag-bad  { color: var(--bad); }
+
+/* --- task lists ---------------------------------------------- */
+
+/* <ul class="tasks"> with <li data-state="done|wip|todo"> */
+ul.tasks { list-style: none; padding-left: 0; }
+ul.tasks li {
+  padding-left: 1.9em;
+  position: relative;
+  margin: 0.4em 0;
+}
+ul.tasks li::before {
+  position: absolute;
+  left: 0;
+  font-family: ui-monospace, Menlo, monospace;
+  color: var(--fg-muted);
+  content: "[ ]";
+}
+ul.tasks li[data-state="done"]::before { content: "[x]"; color: var(--good); }
+ul.tasks li[data-state="wip"]::before  { content: "[~]"; color: var(--accent); }
+ul.tasks li[data-state="done"] { color: var(--fg-muted); }
+
+/* --- definition list (decisions, key/value facts) ------------- */
+
+dl { display: grid; grid-template-columns: minmax(8rem, max-content) 1fr; gap: 0.4em 1.2em; }
+dt { font-weight: 600; }
+dd { margin: 0; }
+
+/* --- footnotes / source trail -------------------------------- */
+
+.footer {
+  margin-top: 4rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+  color: var(--fg-muted);
+  font-size: 0.8125rem;
+}
+
+@media (max-width: 34rem) {
+  body { font-size: 16px; padding: 1.5rem 1rem 4rem; }
+  dl { grid-template-columns: 1fr; gap: 0.15em; }
+  dd { margin-bottom: 0.6em; }
+}
+
+@media print {
+  :root { --bg: #fff; --fg: #000; }
+  body { font-size: 11pt; }
+  a { color: #000; }
+}
+</style>
+</head>
+<body>
+<main>
+
+<h1>Standard HTML: house style</h1>
+<p class="meta"><span>2026-07-12</span><span>~/.claude/skills</span><span>Design brief</span></p>
+
+<p>This document is the reference implementation of the house style. It exists to
+be argued with: every component the stylesheet ships is used at least once below,
+so anything you dislike here is something you can strike from
+<span class="path">assets/style.css</span> and never see again. The style takes its
+cues from Andrew Kelley's blog — a plain document on a plain background, system
+font, no ornament — extended only where plans and audits genuinely need structure
+that prose cannot carry.</p>
+
+<h2>The one rule</h2>
+
+<p>These documents never adopt the theme of the project they live in. Not its
+fonts, not its brand colors, not its design tokens. A plan for a game and a plan
+for a payments backend look identical, because the document is a note
+<em>about</em> the work rather than a piece <em>of</em> it, and because your eye
+should never have to re-learn the layout when you switch repos.</p>
+
+<div class="note">
+  <span class="note-label">Note</span>
+  The stylesheet is pasted into every document rather than linked. A doc that
+  loses its formatting when you move it, email it, or open it from disk is not a
+  document, it is a build artifact.
+</div>
+
+<h2>Typography and prose</h2>
+
+<p>Body text is <code>system-ui</code> at 17px on a 72em measure, left-justified
+against the gutter rather than centered in the window. Links are
+<a href="https://andrewkelley.me/">blue and underlined</a> because that is what a
+link looks like. Code is <code>ui-monospace</code>, boxed inline and tinted in
+blocks. Paths get the mono face without the box, so a line like
+<span class="path">src/api/handlers.rs:214</span> reads as a location rather than
+a snippet.</p>
+
+<blockquote>
+  Quotes are set off with a rule and muted, for when you are citing a spec, an
+  error message, or something the user said three turns ago.
+</blockquote>
+
+<h3>Headings go three deep</h3>
+
+<p>An <code>h1</code> for the title with a rule under it, <code>h2</code> for
+sections, <code>h3</code> for the rare subsection. If you find yourself wanting an
+<code>h4</code>, the document probably wants splitting instead.</p>
+
+<h2>Decisions</h2>
+
+<p>A definition list is the honest shape for a decision record: the choice on the
+left, the reason on the right, nothing else competing for attention.</p>
+
+<dl>
+  <dt>Font</dt>
+  <dd>System UI stack. No web fonts — they add a network dependency and a flash of
+  unstyled text to a document whose entire job is to be readable offline.</dd>
+  <dt>Dark mode</dt>
+  <dd>Follows <code>prefers-color-scheme</code>. No toggle: the OS already knows
+  the answer and a toggle is a widget to maintain.</dd>
+  <dt>Measure</dt>
+  <dd>72em, same as Kelley. Generous for prose, but it means a findings table never
+  has to scroll, and long code lines stay on one line.</dd>
+  <dt>Alignment</dt>
+  <dd>Left, not centered. The document starts at the same x-position no matter how
+  wide the window is, so nothing reflows sideways when you resize.</dd>
+  <dt>Color</dt>
+  <dd>Four semantic colors and three greys. Severity needs to be legible at a
+  glance; nothing else in the document needs to be colored at all.</dd>
+</dl>
+
+<h2>Plans</h2>
+
+<p>Phased work uses a task list with an explicit state per item, so a plan and a
+progress report are the same document at two points in time.</p>
+
+<ul class="tasks">
+  <li data-state="done">Write the <code>audit</code> skill and the <code>standard-html</code> skill.</li>
+  <li data-state="done">Lift a house style from the Kelley stylesheet and extend it for tables, callouts, and status.</li>
+  <li data-state="wip">Get this document in front of you and cut what you do not like.</li>
+  <li data-state="todo">Run a real audit on a real repo and see whether the report format survives contact.</li>
+</ul>
+
+<h2>Findings tables</h2>
+
+<p>The reason HTML exists in this workflow. The same content in Markdown is a
+thicket of pipes that neither of us can read, and the status column is the first
+thing to break. Reasoning lives in the prose around the table; the cells hold
+short enumerable facts.</p>
+
+<div class="scroll">
+<table>
+  <thead>
+    <tr><th>Area</th><th>Severity</th><th>Finding</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="path">assets/style.css</span></td>
+      <td><span class="tag tag-good">solid</span></td>
+      <td>Renders correctly in light and dark, degrades sanely when printed.</td>
+    </tr>
+    <tr>
+      <td><span class="path">SKILL.md</span></td>
+      <td><span class="tag tag-warn">unproven</span></td>
+      <td>The trigger description has not yet been tested against a real "make me a plan" request.</td>
+    </tr>
+    <tr>
+      <td><span class="path">audit/SKILL.md</span></td>
+      <td><span class="tag tag-bad">untested</span></td>
+      <td>The verification step is the load-bearing one and has never run against a live codebase.</td>
+    </tr>
+    <tr>
+      <td>Whole style</td>
+      <td><span class="tag">n/a</span></td>
+      <td>Tags also come in an unstyled grey variant, for when a row has no severity.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="warn">
+  <span class="note-label">Warning</span>
+  Callouts come in three flavors and should stay rare. A document where everything
+  is boxed is a document where nothing is emphasized.
+</div>
+
+<div class="ok">
+  <span class="note-label">Resolved</span>
+  The third flavor, for a risk that has been checked and cleared.
+</div>
+
+<h2>Code</h2>
+
+<p>Blocks are bordered and tinted — the one Kelley signature worth keeping
+verbatim — and scroll inside their own box rather than pushing the page sideways.</p>
+
+<pre><code>/* The whole of Kelley's stylesheet, essentially: */
+body {
+  font-family: system-ui, -apple-system, Roboto, "Segoe UI", sans-serif;
+}
+pre {
+  background-color: #eee;
+  border: 1px solid #3a3a3a;
+  padding: 0.5em;
+}
+@media (prefers-color-scheme: dark) {
+  body { background-color: black; color: white; }
+  a    { color: #89a6ff; }
+}</code></pre>
+
+<hr>
+
+<h2>What to tell me</h2>
+
+<p>Things worth having an opinion about: the 17px body size, whether
+the tinted <code>&lt;pre&gt;</code> border is too heavy, whether tags should be
+colored text or filled pills, and whether the task-list <code>[x]</code> markers
+are charming or twee. Anything you cut, I will cut from the stylesheet so it never
+comes back.</p>
+
+<p class="footer">Written by Claude · style derived from <a href="https://andrewkelley.me/style.css">andrewkelley.me/style.css</a> · source: <span class="path">~/.claude/skills/standard-html/</span></p>
+
+</main>
+</body>
+</html>

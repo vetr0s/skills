@@ -1,0 +1,245 @@
+/* ============================================================
+   Standard HTML — house style for plans, audits, and design docs.
+   Deliberately project-agnostic: this never adopts a project's theme.
+   Plain document on a plain background. Legibility over decoration.
+   ============================================================ */
+
+:root {
+  --bg:        #fbfbf9;
+  --fg:        #1a1a1a;
+  --fg-muted:  #5c5c5c;
+  --rule:      #d4d4cf;
+  --surface:   #f0f0ec;
+  --link:      #0b4fa8;
+  --visited:   #6b3fa0;
+  --accent:    #8a5a00;
+  --good:      #1c6b2e;
+  --bad:       #a11b1b;
+  --measure:   72em;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:       #101010;
+    --fg:       #e6e6e3;
+    --fg-muted: #9a9a95;
+    --rule:     #3a3a3a;
+    --surface:  #1c1c1c;
+    --link:     #89a6ff;
+    --visited:  #d98cff;
+    --accent:   #e0a33a;
+    --good:     #52c96a;
+    --bad:      #ff6b52;
+  }
+}
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--fg);
+  background: var(--bg);
+  margin: 0;
+  padding: 2.5rem 1.25rem 6rem;
+}
+
+/* Left-justified, not centered: the document hugs the left gutter and simply
+   stops at the measure. */
+main, .doc {
+  max-width: var(--measure);
+  margin: 0;
+}
+
+/* --- headings ------------------------------------------------ */
+
+h1, h2, h3, h4 {
+  line-height: 1.25;
+  font-weight: 600;
+  margin: 2.2em 0 0.6em;
+}
+h1 {
+  font-size: 1.9rem;
+  margin-top: 0;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--rule);
+}
+h2 { font-size: 1.35rem; }
+h3 { font-size: 1.1rem; }
+h4 { font-size: 1rem; color: var(--fg-muted); }
+
+/* Byline directly under the h1: date, repo, commit, author. */
+.meta {
+  color: var(--fg-muted);
+  font-size: 0.875rem;
+  margin: -0.2em 0 2.5em;
+}
+.meta > * + *::before { content: " · "; }
+
+/* --- prose --------------------------------------------------- */
+
+p, ul, ol, dl, table, pre, blockquote { margin: 0 0 1.1em; }
+
+a          { color: var(--link); }
+a:visited  { color: var(--visited); }
+
+strong { font-weight: 600; }
+
+small, .muted { color: var(--fg-muted); font-size: 0.875rem; }
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 2.5em 0;
+}
+
+blockquote {
+  margin-left: 0;
+  padding: 0.1em 0 0.1em 1em;
+  border-left: 3px solid var(--rule);
+  color: var(--fg-muted);
+}
+
+ul, ol { padding-left: 1.4em; }
+li { margin: 0.25em 0; }
+li > ul, li > ol { margin: 0.25em 0; }
+
+/* --- code ---------------------------------------------------- */
+
+code, kbd, samp, .path {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.875em;
+}
+
+code {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 0.1em 0.3em;
+}
+
+/* File paths and identifiers: mono, but no box. */
+.path { color: var(--fg-muted); }
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  padding: 0.75em 0.9em;
+  overflow-x: auto;
+  line-height: 1.45;
+}
+pre code {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: 0.8125rem;
+}
+
+/* --- tables -------------------------------------------------- */
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.9375rem;
+}
+th, td {
+  border: 1px solid var(--rule);
+  padding: 0.45em 0.7em;
+  text-align: left;
+  vertical-align: top;
+}
+th {
+  background: var(--surface);
+  font-weight: 600;
+}
+
+/* Wide tables scroll inside their own box; the page never scrolls sideways. */
+.scroll { overflow-x: auto; margin: 0 0 1.1em; }
+.scroll table { margin: 0; }
+
+/* --- callouts ------------------------------------------------ */
+
+.note, .warn, .ok {
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--fg-muted);
+  background: var(--surface);
+  padding: 0.7em 0.9em;
+  margin: 0 0 1.1em;
+}
+.note > :last-child, .warn > :last-child, .ok > :last-child { margin-bottom: 0; }
+.warn { border-left-color: var(--accent); }
+.ok   { border-left-color: var(--good); }
+
+.note-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  margin-bottom: 0.3em;
+}
+
+/* --- status tags --------------------------------------------- */
+
+.tag {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  padding: 0.05em 0.4em;
+  white-space: nowrap;
+  color: var(--fg-muted);
+}
+.tag-good { color: var(--good); }
+.tag-warn { color: var(--accent); }
+.tag-bad  { color: var(--bad); }
+
+/* --- task lists ---------------------------------------------- */
+
+/* <ul class="tasks"> with <li data-state="done|wip|todo"> */
+ul.tasks { list-style: none; padding-left: 0; }
+ul.tasks li {
+  padding-left: 1.9em;
+  position: relative;
+  margin: 0.4em 0;
+}
+ul.tasks li::before {
+  position: absolute;
+  left: 0;
+  font-family: ui-monospace, Menlo, monospace;
+  color: var(--fg-muted);
+  content: "[ ]";
+}
+ul.tasks li[data-state="done"]::before { content: "[x]"; color: var(--good); }
+ul.tasks li[data-state="wip"]::before  { content: "[~]"; color: var(--accent); }
+ul.tasks li[data-state="done"] { color: var(--fg-muted); }
+
+/* --- definition list (decisions, key/value facts) ------------- */
+
+dl { display: grid; grid-template-columns: minmax(8rem, max-content) 1fr; gap: 0.4em 1.2em; }
+dt { font-weight: 600; }
+dd { margin: 0; }
+
+/* --- footnotes / source trail -------------------------------- */
+
+.footer {
+  margin-top: 4rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+  color: var(--fg-muted);
+  font-size: 0.8125rem;
+}
+
+@media (max-width: 34rem) {
+  body { font-size: 16px; padding: 1.5rem 1rem 4rem; }
+  dl { grid-template-columns: 1fr; gap: 0.15em; }
+  dd { margin-bottom: 0.6em; }
+}
+
+@media print {
+  :root { --bg: #fff; --fg: #000; }
+  body { font-size: 11pt; }
+  a { color: #000; }
+}
