@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# Symlink every skill in this repo into ~/.claude/skills/.
-# Idempotent. Refuses to clobber a real directory that isn't ours.
+# Symlink every skill in this repo into ~/.claude/skills/, and the global
+# CLAUDE.md into ~/.claude/.
+# Idempotent. Refuses to clobber a real file or directory that isn't ours.
 set -euo pipefail
 
 repo="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -20,3 +21,11 @@ for skill in "$repo"/*/; do
   ln -sfn "$skill" "$link"
   echo "linked $name"
 done
+
+memory_link="${HOME}/.claude/CLAUDE.md"
+if [ -e "$memory_link" ] && [ ! -L "$memory_link" ]; then
+  echo "skip CLAUDE.md: $memory_link exists and is not a symlink" >&2
+else
+  ln -sfn "$repo/CLAUDE.md" "$memory_link"
+  echo "linked CLAUDE.md"
+fi
