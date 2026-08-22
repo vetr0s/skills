@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Standard HTML — house style</title>
+<title>Standard HTML house style</title>
 <style>
 /* ============================================================
-   Standard HTML — house style for plans, audits, and design docs.
+   Standard HTML house style for plans, audits, and design docs.
    Deliberately project-agnostic: this never adopts a project's theme.
    Plain document on a plain background. Legibility over decoration.
    ============================================================ */
@@ -262,9 +262,9 @@ dd { margin: 0; }
 be argued with: every component the stylesheet ships is used at least once below,
 so anything you dislike here is something you can strike from
 <span class="path">assets/style.css</span> and never see again. The style takes its
-cues from Andrew Kelley's blog — a plain document on a plain background, system
-font, no ornament — extended only where plans and audits genuinely need structure
-that prose cannot carry.</p>
+cues from Andrew Kelley's blog. A plain document on a plain background, system
+font, no ornament. It is extended only where plans and audits genuinely need
+structure that prose cannot carry.</p>
 
 <h2>The one rule</h2>
 
@@ -309,7 +309,7 @@ left, the reason on the right, nothing else competing for attention.</p>
 
 <dl>
   <dt>Font</dt>
-  <dd>System UI stack. No web fonts — they add a network dependency and a flash of
+  <dd>System UI stack. No web fonts. They add a network dependency and a flash of
   unstyled text to a document whose entire job is to be readable offline.</dd>
   <dt>Dark mode</dt>
   <dd>Follows <code>prefers-color-scheme</code>. No toggle: the OS already knows
@@ -387,8 +387,8 @@ short enumerable facts.</p>
 
 <h2>Code</h2>
 
-<p>Blocks are bordered and tinted — the one Kelley signature worth keeping
-verbatim — and scroll inside their own box rather than pushing the page sideways.</p>
+<p>Blocks are bordered and tinted. That is the one Kelley signature worth keeping
+verbatim. They scroll inside their own box rather than pushing the page sideways.</p>
 
 <pre><code>/* The whole of Kelley's stylesheet, essentially: */
 body {
@@ -414,7 +414,7 @@ colored text or filled pills, and whether the task-list <code>[x]</code> markers
 are charming or twee. Anything you cut, I will cut from the stylesheet so it never
 comes back.</p>
 
-<p class="footer">Written by Claude · style derived from <a href="https://andrewkelley.me/style.css">andrewkelley.me/style.css</a> · source: <span class="path">~/.claude/skills/standard-html/</span></p>
+<p class="footer">Style derived from <a href="https://andrewkelley.me/style.css">andrewkelley.me/style.css</a>. Source: <span class="path">~/.claude/skills/standard-html/</span>.</p>
 
 </main>
 </body>

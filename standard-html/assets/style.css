@@ -1,5 +1,5 @@
 /* ============================================================
-   Standard HTML — house style for plans, audits, and design docs.
+   Standard HTML house style for plans, audits, and design docs.
    Deliberately project-agnostic: this never adopts a project's theme.
    Plain document on a plain background. Legibility over decoration.
    ============================================================ */
@@ -221,6 +221,31 @@ ul.tasks li[data-state="done"] { color: var(--fg-muted); }
 dl { display: grid; grid-template-columns: minmax(8rem, max-content) 1fr; gap: 0.4em 1.2em; }
 dt { font-weight: 600; }
 dd { margin: 0; }
+
+/* --- table of contents --------------------------------------- */
+
+/* <nav class="toc"> wrapping a nested <ol> or <ul> of in-page links. */
+.toc {
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  padding: 0.9em 1.1em;
+  margin: 0 0 2.2em;
+}
+.toc ol, .toc ul { list-style: none; padding-left: 0; margin: 0; }
+.toc li { margin: 0.15em 0; }
+.toc ol ol, .toc ul ul { padding-left: 1.1em; }
+.toc ol ol li, .toc ul ul li { font-size: 0.9375rem; }
+.toc a { text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+
+/* A long flat contents list reads better in columns once there is room. */
+@media (min-width: 52rem) {
+  .toc > ol, .toc > ul { columns: 2; column-gap: 2.5em; }
+  .toc > ol > li, .toc > ul > li { break-inside: avoid; }
+}
+
+/* Back-to-contents link at the foot of a section. */
+.backtotoc { font-size: 0.8125rem; color: var(--fg-muted); }
 
 /* --- footnotes / source trail -------------------------------- */
 
