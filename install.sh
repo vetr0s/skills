@@ -8,24 +8,20 @@ repo="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 dest="${HOME}/.claude/skills"
 mkdir -p "$dest"
 
+link() {
+  local target="$1" link="$2"
+  if [ -e "$link" ] && [ ! -L "$link" ]; then
+    echo "skip ${link/#$HOME/\~}: exists and is not a symlink" >&2
+    return
+  fi
+  ln -sfn "$target" "$link"
+  echo "linked ${link/#$HOME/\~}"
+}
+
 for skill in "$repo"/*/; do
   name="$(basename "$skill")"
   [ -f "$skill/SKILL.md" ] || continue
-  link="$dest/$name"
-
-  if [ -e "$link" ] && [ ! -L "$link" ]; then
-    echo "skip $name: $link exists and is not a symlink" >&2
-    continue
-  fi
-
-  ln -sfn "$skill" "$link"
-  echo "linked $name"
+  link "$skill" "$dest/$name"
 done
 
-memory_link="${HOME}/.claude/CLAUDE.md"
-if [ -e "$memory_link" ] && [ ! -L "$memory_link" ]; then
-  echo "skip CLAUDE.md: $memory_link exists and is not a symlink" >&2
-else
-  ln -sfn "$repo/CLAUDE.md" "$memory_link"
-  echo "linked CLAUDE.md"
-fi
+link "$repo/CLAUDE.md" "${HOME}/.claude/CLAUDE.md"
