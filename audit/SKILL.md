@@ -1,6 +1,6 @@
 ---
 name: audit
-description: Holistic read-only review of a project's current state, covering architecture, code health, correctness risks, tests, documentation drift, and tooling, using parallel exploration agents and reported as an HTML document. Use when the user says "audit the code", "audit this", "what's the state of this project", "review the whole codebase", or asks for a holistic or overall review rather than a review of a specific diff.
+description: Whole-project read-only review of a project's current state, covering architecture, code health, correctness risks, tests, documentation drift, and tooling, using parallel exploration agents and reported as an HTML document. Use when the user says "audit the code", "audit this", "what's the state of this project", "review the whole codebase", or asks for a holistic or overall review rather than a review of a specific diff.
 ---
 
 # Audit

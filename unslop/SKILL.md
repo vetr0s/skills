@@ -3,6 +3,8 @@ name: unslop
 description: Strip AI tells out of prose. A catalogue of the patterns that make writing read as machine-generated, each with its fix. Use before shipping any README, doc, comment, commit body, blog post, or report, and when the user says "unslop this", "this reads like AI", "de-slop", or complains about em dashes, filler, or LLM voice.
 ---
 
+<!-- slop-detector: ignore-file -->
+
 # Unslop
 
 Edit text so it does not read as generated. Preserve the meaning. Keep the
@@ -11,9 +13,20 @@ intended tone.
 ## Process
 
 1. Read the whole thing once for meaning.
-2. Scan against the catalogue below.
-3. Rewrite. Do not annotate, do not leave a change log in the text.
-4. Ask yourself: what still marks this as machine-written? Fix that too.
+2. Run `scripts/slop.py <files>` for the mechanical tells.
+3. Scan against the catalogue below for the ones a regex cannot see.
+4. Rewrite. Do not annotate, do not leave a change log in the text.
+5. Rerun the script and ask what still marks this as machine-written.
+
+The script finds surface patterns: em dashes, curly quotes, the vocabulary
+list, filler, chatbot phrases. It cannot see a vague claim, a passive
+construction, or a paragraph that says nothing, which is most of what matters.
+Treat a clean run as the start of the read, not the end of it. Hits are places
+to look, not verdicts, and it over-flags bold lead-ins that are doing real work.
+
+A document that quotes the patterns on purpose opts out with a
+`slop-detector: ignore-file` comment near the top, or one line at a time with
+`slop-detector: ignore`.
 
 ## House rules come first
 
