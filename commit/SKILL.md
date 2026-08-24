@@ -104,8 +104,8 @@ If pre-commit hooks modify files, re-stage and amend rather than leaving a
 follow-up "fix formatting" commit. If a hook fails, fix the cause. Never pass
 `--no-verify`.
 
-If the current branch is the repo's default branch (`main` or `master`), branch
-first rather than committing straight onto it, unless the user says otherwise.
+Commit to the branch that is already checked out, `main` included. Create a
+branch only when the user asks for one.
 
 ## Amending and rewording
 
