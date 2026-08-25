@@ -47,9 +47,9 @@ commit it. Never push unless I asked for a push. Committing is not pushing.
 
 ## Skills
 
-Before starting project work, check `~/.claude/skills/` and invoke the skill
-that covers the task instead of improvising. Those are symlinks into
-`~/source/repos/skills`.
+Before starting project work, check the available user skills and invoke the
+skill that covers the task instead of improvising. The installed skills are
+symlinks into `~/source/repos/skills`.
 
 `commit` governs every commit. `standard-html` governs written documents.
 `audit` governs whole-codebase review. `architect` governs design work before

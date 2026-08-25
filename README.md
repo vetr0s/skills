@@ -1,11 +1,14 @@
 # skills
 
-Personal [Claude Code](https://claude.com/claude-code) skills, kept in one repo
-and symlinked into `~/.claude/skills/` so they version with git and follow me
-between machines.
+Personal agent skills kept in one repo. The installer links each skill into
+Claude Code and Codex so the same files work in both agents.
+
+The skills use the open agent skills layout. Each skill is a directory with a
+`SKILL.md` file and optional scripts, references, and assets.
 
 `CLAUDE.md` is the single source of truth for global instructions. `AGENTS.md`
-is a symlink to it, so an agent that looks for that name finds the same rules.
+is a symlink to it. The installer links that shared file into each agent's
+global instruction location.
 
 ## Skills
 
@@ -28,9 +31,15 @@ git clone git@github.com:vetr0s/skills.git ~/source/repos/skills
 ~/source/repos/skills/install.sh
 ```
 
-`install.sh` symlinks every skill directory into `~/.claude/skills/`, and
-`CLAUDE.md` into `~/.claude/`. It is idempotent, and it leaves any non-symlinked
-file already living there alone.
+`install.sh` creates these links:
+
+| Agent | Skills | Global instructions |
+| --- | --- | --- |
+| Claude Code | `~/.claude/skills/` | `~/.claude/CLAUDE.md` |
+| Codex | `~/.agents/skills/` | `~/.codex/AGENTS.md` |
+
+The installer is idempotent. It leaves any non-symlinked file or directory
+already living at a destination alone.
 
 ## Adding a skill
 
@@ -41,7 +50,7 @@ sees when deciding whether the skill is relevant. Supporting files go in
 `<name>/assets/` for things handed to the user and `<name>/references/` for
 things the agent reads on demand. Then re-run `install.sh`.
 
-Skills load at session start, so a new one needs a fresh session to show up.
+Restart the agent when a new skill does not appear.
 
 ## Credits
 

@@ -27,8 +27,8 @@ user, and `<name>/references/` for things the agent reads on demand. Reference
 them by relative path so the skill still works when it is symlinked.
 
 Run `install.sh` after adding a skill. It links every directory containing a
-`SKILL.md` into `~/.claude/skills/`. Skills load at session start, so a new one
-needs a fresh session.
+`SKILL.md` into the user skill directories for Claude Code and Codex. Restart an
+agent when a new skill does not appear.
 
 ## The description is the whole trigger
 
