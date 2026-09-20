@@ -13,6 +13,7 @@ style in `CLAUDE.md`. The ideas and the structure are theirs.
 | `how` | [`cursor/plugins`](https://github.com/cursor/plugins) `pstack/skills/how` | (c) 2026 Lauren Tan, MIT |
 | `blast-radius` | [`cursor/plugins`](https://github.com/cursor/plugins) `pstack/skills/blast-radius` | (c) 2026 Lauren Tan, MIT |
 | `unslop` | [`cursor/plugins`](https://github.com/cursor/plugins) `pstack/skills/unslop` | (c) 2026 Lauren Tan, MIT |
+| `bash` | [Dave Eddy's YSAP Bash Style Guide](https://github.com/bahamas10/bash-style-guide) | (c) Dave Eddy, MIT |
 
 The `audit` skill's code-health standard borrows from `cursor-team-kit`'s
 `thermo-nuclear-code-quality-review`, (c) 2026 Cursor, MIT.
@@ -29,6 +30,7 @@ The `standard-html` stylesheet derives from
 Copyright (c) 2026 Lauren Tan
 Copyright (c) 2026 Matt Pocock
 Copyright (c) 2026 Cursor
+Copyright (c) Dave Eddy
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in

@@ -16,6 +16,7 @@ global instruction location.
 | --- | --- |
 | [`architect`](architect/) | Designs the shape of a change before writing it. Caller usage first, then types and signatures, with competing shapes compared before one is picked. |
 | [`audit`](audit/) | Read-only whole-project review: architecture, correctness, code health, tests, doc drift, tooling. Parallel agents, reported as HTML. |
+| [`bash`](bash/) | Writes and reviews Bash scripts using the YSAP Bash Style Guide. |
 | [`blast-radius`](blast-radius/) | Works out what a change breaks somewhere else, and proves the one fact it is safe because of by running code. |
 | [`commit`](commit/) | Writes commit messages that explain *why*. Never attributes the commit to an AI tool. Covers amending and splitting. |
 | [`debug`](debug/) | Diagnosis loop built around a fast check that goes red on the bug. Covers native crashes, memory errors, and frame-time regressions. |
